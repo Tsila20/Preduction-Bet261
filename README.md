@@ -1,38 +1,38 @@
-# ⚽ BET261 Preductor — Football (Web App)
+# ⚽ BET261 Preductor
 
-Preductor Football miasa amin’ny navigateur (GitHub Pages).
-Mamoaka probabilités sy marchés dérivés à partir des odds 1X2 :
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Status](https://img.shields.io/badge/status-Active-success)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-- 1X2
-- Double chance (1X, 12, X2)
+Football probabilistic predictor based on 1X2 odds.
+
+---
+
+## 🎯 Features
+
+- 1X2 probabilities (de-vig normalized)
+- Double chance
 - GG / NG (BTTS)
 - Over / Under (0.5 → 5.5)
 - Clean sheets
-- Top scores exacts
-- Indication: BET / WATCH / NO BET (risk mode)
+- Top 8 exact scores
+- Risk mode (Safe / Standard / Aggressive)
 
 ---
 
-## 🔬 Mécanique (Mode Quick)
+## 🔬 How it Works
 
-1. Dé-vig des odds 1X2 (normalisation des probabilités)
-2. Estimation des buts attendus (λ Home, λ Away)
-3. Modèle de Poisson → matrice des scores (0–6)
-4. Agrégation → marchés dérivés
-
-⚠️ Mode Quick = basé uniquement sur les odds 1X2  
-📈 Mode Pro (à venir) = calibration sur historique + backtest
+1. Remove bookmaker margin (overround)
+2. Estimate expected goals (λ Home / λ Away)
+3. Generate Poisson score matrix (0–6)
+4. Aggregate into betting markets
 
 ---
 
-## 🚀 Déploiement (GitHub Pages)
+## 🚀 Live App
 
-1. Repo → Settings → Pages  
-2. Source: Deploy from branch  
-3. Branch: main / root  
-4. Accéder à :  
-   https://<username>.github.io/bet261-predictor/
+👉 https://Tsila20.github.io/bet261-predictor/
 
 ---
 
-## 📂 Structure
+## 📂 Project Structure
