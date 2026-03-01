@@ -1,0 +1,18 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node
+node_modules/
+
+# Python (future PRO mode)
+__pycache__/
+*.pyc
+venv/
+.env
+
+# VSCode
+.vscode/
