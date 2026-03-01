@@ -1,108 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>PRE261 Preductor</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PRE261 Preductor — Football</title>
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0b0f14" />
+  <meta name="theme-color" content="#0b0f14">
+  <meta name="description" content="PRE261 Preductor - Football probabilistic predictor (1X2, O/U, BTTS, Score exact, Value Engine).">
 
   <!-- Icons -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
   <link rel="apple-touch-icon" href="assets/icons/icon-512.png">
 
-  <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-
 <body>
-
-<header class="header">
-  <div class="logo">
-    <img src="assets/icons/icon-256.png" alt="PRE261 Logo">
-    <div>
-      <h1>PRE261 Preductor</h1>
-      <p>Football • Probabilités • Value • NO BET</p>
-    </div>
-  </div>
-</header>
-
-<main class="container">
-
-  <!-- MATCH -->
-  <section class="card">
-    <h2>Match</h2>
-
-    <div class="field">
-      <label>Équipe domicile</label>
-      <input id="homeTeam" type="text" placeholder="Home FC">
-    </div>
-
-    <div class="field">
-      <label>Équipe extérieur</label>
-      <input id="awayTeam" type="text" placeholder="Away FC">
-    </div>
-
-    <div class="grid3">
-      <div class="field">
-        <label>Odd 1</label>
-        <input id="odd1" type="number" step="0.01">
-      </div>
-      <div class="field">
-        <label>Odd X</label>
-        <input id="oddX" type="number" step="0.01">
-      </div>
-      <div class="field">
-        <label>Odd 2</label>
-        <input id="odd2" type="number" step="0.01">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">P</div>
+      <div>
+        <div class="title">PRE261 Preductor</div>
+        <div class="subtitle">Football • Probabilités • Value • NO BET</div>
       </div>
     </div>
+  </header>
 
-    <div class="divider"></div>
+  <main class="container">
+    <section class="card">
+      <div class="card-title">Match</div>
 
-    <!-- VALUE ENGINE -->
-    <div class="grid3">
-      <div class="field">
-        <label>Odd Over 2.5</label>
-        <input id="oddOver25" type="number" step="0.01">
+      <div class="grid2">
+        <div class="field">
+          <label>Équipe domicile</label>
+          <input id="homeTeam" placeholder="Ex: Real Madrid" value="Home FC">
+        </div>
+        <div class="field">
+          <label>Équipe extérieur</label>
+          <input id="awayTeam" placeholder="Ex: Barcelona" value="Away FC">
+        </div>
       </div>
-      <div class="field">
-        <label>Odd Under 2.5</label>
-        <input id="oddUnder25" type="number" step="0.01">
+
+      <div class="divider"></div>
+
+      <div class="grid3">
+        <div class="field">
+          <label>Odd 1</label>
+          <input id="odd1" type="number" step="0.01" min="1.01" value="2.10">
+        </div>
+        <div class="field">
+          <label>Odd X</label>
+          <input id="oddX" type="number" step="0.01" min="1.01" value="3.20">
+        </div>
+        <div class="field">
+          <label>Odd 2</label>
+          <input id="odd2" type="number" step="0.01" min="1.01" value="3.60">
+        </div>
       </div>
-      <div class="field">
-        <label>Odd BTTS (GG)</label>
-        <input id="oddBTTS" type="number" step="0.01">
+
+      <div class="divider"></div>
+
+      <div class="grid3">
+        <div class="field">
+          <label>Odd Over 2.5</label>
+          <input id="oddOver25" type="number" step="0.01" min="1.01" placeholder="Ex: 1.90">
+        </div>
+        <div class="field">
+          <label>Odd BTTS (GG)</label>
+          <input id="oddBTTS" type="number" step="0.01" min="1.01" placeholder="Ex: 1.85">
+        </div>
+        <div class="field">
+          <label>Odd Under 2.5</label>
+          <input id="oddUnder25" type="number" step="0.01" min="1.01" placeholder="Ex: 1.95">
+        </div>
       </div>
-    </div>
 
-    <div class="divider"></div>
+      <div class="grid2">
+        <div class="field">
+          <label>Risk Mode</label>
+          <select id="riskMode">
+            <option value="safe">SAFE (NO BET facile)</option>
+            <option value="standard" selected>STANDARD</option>
+            <option value="aggressive">AGGRESSIVE (bets +)</option>
+          </select>
+        </div>
 
-    <div class="actions">
-      <button onclick="predict()">Predict</button>
-      <button class="secondary" onclick="resetForm()">Reset</button>
-    </div>
+        <div class="field">
+          <label>Capital (simulation)</label>
+          <input id="bankroll" type="number" step="1" min="0" value="10000">
+        </div>
+      </div>
 
-  </section>
+      <div class="actions">
+        <button id="btnPredict" class="btn primary">Predict</button>
+        <button id="btnReset" class="btn">Reset</button>
+      </div>
 
-  <!-- RESULTS -->
-  <section class="card">
-    <h2>Résultats</h2>
-    <div id="results">
-      Clique sur Predict...
-    </div>
-  </section>
+      <div class="hint">
+        Mode Quick = fonctionne avec les odds 1X2 (pas besoin de dataset).<br/>
+        Value Engine = raha ampidirinao ny odds dia hivoaka VALUE/NO VALUE.
+      </div>
+    </section>
 
-</main>
+    <section class="card">
+      <div class="card-title">Résultats</div>
+      <div id="output" class="output empty">Clique sur <b>Predict</b>…</div>
+    </section>
 
-<footer>
-  <p>© 2026 PRE261 • Poisson Model • Value Engine v2.0</p>
-</footer>
+    <footer class="foot">
+      <div>⚙️ odds→probabilités (dé-vig) + Poisson + marchés + Value Engine (EV).</div>
+    </footer>
+  </main>
 
-<script src="assets/js/app.js"></script>
-
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
