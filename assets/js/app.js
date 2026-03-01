@@ -1,3 +1,9 @@
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+  });
+}
+
 // BET261 Preductor — v2 (VALUE ENGINE)
 // - 1X2 odds -> de-vig probabilities
 // - Estimate lambdas (λH, λA) from 1X2
