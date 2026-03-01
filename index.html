@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BET261 Preductor — Football</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">B</div>
+      <div>
+        <div class="title">BET261 Preductor</div>
+        <div class="subtitle">Football • Probabilités • Value • NO BET</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="card-title">Match</div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Équipe domicile</label>
+          <input id="homeTeam" placeholder="Ex: Real Madrid" value="Home FC">
+        </div>
+        <div class="field">
+          <label>Équipe extérieur</label>
+          <input id="awayTeam" placeholder="Ex: Barcelona" value="Away FC">
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="grid3">
+        <div class="field">
+          <label>Odd 1</label>
+          <input id="odd1" type="number" step="0.01" min="1.01" value="2.10">
+        </div>
+        <div class="field">
+          <label>Odd X</label>
+          <input id="oddX" type="number" step="0.01" min="1.01" value="3.20">
+        </div>
+        <div class="field">
+          <label>Odd 2</label>
+          <input id="odd2" type="number" step="0.01" min="1.01" value="3.60">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Risk Mode</label>
+          <select id="riskMode">
+            <option value="safe">SAFE (NO BET facile)</option>
+            <option value="standard" selected>STANDARD</option>
+            <option value="aggressive">AGGRESSIVE (bets +)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Capital (simulation)</label>
+          <input id="bankroll" type="number" step="1" min="0" value="10000">
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="btnPredict" class="btn primary">Predict</button>
+        <button id="btnReset" class="btn">Reset</button>
+      </div>
+
+      <div class="hint">
+        Mode Quick = fonctionne avec les odds 1X2 (pas besoin de dataset).<br/>
+        Mode Pro = si tu ajoutes un historique plus tard, on active backtest/calibration.
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-title">Résultats</div>
+      <div id="output" class="output empty">Clique sur <b>Predict</b>…</div>
+    </section>
+
+    <footer class="foot">
+      <div>⚙️ Preductor: odds→probabilités (dé-vig) + modèle buts (Poisson) + marchés dérivés.</div>
+    </footer>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
