@@ -1,13 +1,17 @@
-const CACHE_NAME = "pre261-v2";
+const CACHE_NAME = "pre261-pwa-v1";
 const ASSETS = [
   "./",
   "./index.html",
   "./manifest.json",
   "./assets/css/style.css",
   "./assets/js/app.js",
+  "./assets/icons/favicon-32.png",
+  "./assets/icons/icon-96.png",
+  "./assets/icons/icon-192.png",
   "./assets/icons/icon-256.png",
   "./assets/icons/icon-512.png",
-  "./assets/icons/favicon-32.png"
+  "./assets/icons/icon-192-maskable.png",
+  "./assets/icons/icon-512-maskable.png"
 ];
 
 self.addEventListener("install", (e) => {
@@ -23,7 +27,5 @@ self.addEventListener("activate", (e) => {
 });
 
 self.addEventListener("fetch", (e) => {
-  e.respondWith(
-    caches.match(e.request).then((cached) => cached || fetch(e.request))
-  );
+  e.respondWith(caches.match(e.request).then((r) => r || fetch(e.request)));
 });
